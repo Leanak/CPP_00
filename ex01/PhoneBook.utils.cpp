@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.utils.cpp                                :+:      :+:    :+:   */
+/*   PhoneBook.utils.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 01:47:08 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/27 01:49:50 by lenakach         ###   ########.fr       */
+/*   Created: 2025/11/29 14:19:48 by lenakach          #+#    #+#             */
+/*   Updated: 2025/11/29 15:43:18 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 
-bool isAllDigit(const std::string str)
+std::string	safeGetLine(const std::string message)
+{
+	std::string buffer;
+
+	std::cout << message << std::endl;
+	if (!std::getline(std::cin, buffer))
+		exit (0);
+	return (buffer);
+}
+
+int	isAlphaDigit(std::string str)
 {
 	for (int i = 0; str[i]; i++)
 	{
-		if (!std::isdigit(str[i]))
-			return (false);
+		if (!isalnum(str[i]))
+			return (0);
 	}
-	return (true);
+	return (1);
 }
 
-bool isAlphaDigit(const std::string str)
+int	isDigit(std::string str)
 {
 	for(int i = 0; str[i]; i++)
 	{
-		if (!std::isalnum(str[i]))
-			return (false);
+		if (!isdigit(str[i]))
+			return (0);
 	}
-	return (true);
+	return (1);
 }

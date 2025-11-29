@@ -5,16 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 16:19:47 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/27 01:55:14 by lenakach         ###   ########.fr       */
+/*   Created: 2025/11/29 14:12:09 by lenakach          #+#    #+#             */
+/*   Updated: 2025/11/29 15:45:04 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
 
-PhoneBook::PhoneBook(void): _iContact(0) 
-{	
+PhoneBook::PhoneBook(void) : _index(0)
+{
 }
 
 std::string	truncateLine(std::string str)
@@ -24,84 +23,98 @@ std::string	truncateLine(std::string str)
 	return (str);
 }
 
-void PhoneBook::addContact()
-{
-	// Gerer si c'est deja pleins apres;
-	if (this->_iContact == 7)
-		this->_iContact = 0;
-	std::string buff;
-	std::cout << "Add first name" << std::endl;
-	std::cin >> buff;
-	if (!isAlphaDigit(buff))
-	{
-		std::cout << "Invalid format (Alpha or Digit)" << std::endl;
-		return ;
-	}
-	this->_myContact[_iContact].setFirstName(buff);
-	std::cout << "Add last name" << std::endl;
-	std::cin >> buff;
-	if (!isAlphaDigit(buff))
-	{
-		std::cout << "Invalid format (Alpha or Digit)" << std::endl;
-		return ;
-	}
-	this->_myContact[_iContact].setLastName(buff);
-	std::cout << "Add nick name" << std::endl;
-	std::cin >> buff;
-	if (!isAlphaDigit(buff))
-	{
-		std::cout << "Invalid format (Alpha or Digit)" << std::endl;
-		return ;
-	}
-	this->_myContact[_iContact].setNickName(buff);
-	std::cout << "Add phone number" << std::endl;
-	std::cin >> buff;
-	if (!isAllDigit(buff))
-	{
-		std::cout << "Invalid format (Digits only)" << std::endl;
-		return ;
-	}
-	this->_myContact[_iContact].setPhoneNumber(buff);
-	std::cout << "Add darkest secret" << std::endl;
-	std::cin >> buff;
-	if (!isAlphaDigit(buff))
-	{
-		std::cout << "Invalid format (Alpha or Digit)" << std::endl;
-		return ;
-	}
-	this->_myContact[_iContact].setDarkestSecret(buff);
-	this->_iContact++;
-	return ;
-}
-
-void	PhoneBook::display(void)
+void	PhoneBook::display_contact(void)
 {
 	int	index = 0;
 	
-	std::cout << std::setw(10) << "Index"
-			  << std::setw(1) << "|"
-			  << std::setw(10) << "First Name"
-			  << std::setw(1) << "|"
-			  << std::setw(10) << "Last Name"
-			  << std::setw(1) << "|"
-			  << std::setw(10) << "Nick Name"
-			  << std::endl;
+	if (this->_index == 0)
+	{
+		std::cout << "Empty PhoneBook" << std::endl;
+		return ;
+	}
+	std::cout << std::setw(10) << "Index" << std::setw(1) << "|"
+			  << std::setw(10) << "First Name" << std::setw(1) << "|"
+			  << std::setw(10) << "Last Name" << std::setw(1) << "|"
+			  << std::setw(10) << "Nick Name" << std::endl;
 	for (int i=0; i <= 7; i++)
 	{
-		if (!this->_myContact[i].isFilled())
+		if (!this->_allContact[i].isFilled())
 			;
 		else
 		{
-			std::cout << std::setw(10) << index
-					<< std::setw(1) << "|"
-					<< std::setw(10) << truncateLine(this->_myContact[i].getFirstName())
-				  	<< std::setw(1) << "|"
-				  	<< std::setw(10) << truncateLine(this->_myContact[i].getLastName())
-				  	<< std::setw(1) << "|"
-				  	<< std::setw(10) << truncateLine(this->_myContact[i].getNickName())
-				  	<< std::endl;
+			std::cout << std::setw(10) << index << std::setw(1) << "|"
+					  << std::setw(10) << truncateLine(this->_allContact[i].getFirstName()) << std::setw(1) << "|"
+				  	  << std::setw(10) << truncateLine(this->_allContact[i].getLastName()) << std::setw(1) << "|"
+					  << std::setw(10) << truncateLine(this->_allContact[i].getNickName()) << std::endl;
 		}
 		index++;
 	}
 	return ;
+}
+
+void PhoneBook::add_contact(void)
+{
+	std::string buffer;
+
+	if (this->_index == 8)
+		this->_index = 0;
+
+	while (1)
+	{
+		buffer = safeGetLine("Enter first name");
+		if (!isAlphaDigit(buffer))
+			std::cout << "Invalid format for first name, try again" << std::endl;
+		else
+		{
+			this->_allContact[_index].setFirstName(buffer);
+			break ;
+		}
+	}
+	while (1)
+	{
+		buffer = safeGetLine("Enter last name");
+		if (!isAlphaDigit(buffer))
+			std::cout << "Invalid format for last name, try again" << std::endl;
+		else
+		{
+			this->_allContact[_index].setLastName(buffer);
+			break ;
+		}
+	}
+	while (1)
+	{
+		buffer = safeGetLine("Enter nick name");
+		if (!isAlphaDigit(buffer))
+			std::cout << "Invalid format for nick name, try again" << std::endl;
+		else
+		{
+			this->_allContact[_index].setNickName(buffer);
+			break ;
+		}
+	}
+	while (1)
+	{
+		buffer = safeGetLine("Enter phone nunber");
+		if (!isDigit(buffer))
+			std::cout << "Invalid format for phone number, try again" << std::endl;
+		else
+		{
+			this->_allContact[_index].setPhoneNumber(buffer);
+			break ;
+		}
+	}
+	while (1)
+	{
+		buffer = safeGetLine("Enter darkest secret");
+		if (!isAlphaDigit(buffer))
+			std::cout << "Invalid format for darkest secret, try again" << std::endl;
+		else
+		{
+			this->_allContact[_index].setDarkestSecret(buffer);
+			break ;
+		}
+	}
+	this->_index++;
+	std::cout << "Contact added successfully" << std::endl;
+	return; 
 }

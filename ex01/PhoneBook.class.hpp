@@ -5,29 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 16:04:25 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/27 01:50:46 by lenakach         ###   ########.fr       */
+/*   Created: 2025/11/29 14:06:32 by lenakach          #+#    #+#             */
+/*   Updated: 2025/11/29 15:16:05 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "Contact.class.hpp"
-#include <iostream>
 #include <iomanip>
+#include "Contact.class.hpp"
 
 class PhoneBook
 {
   private:
-	int _iContact;
-	Contact _myContact[8];
+	int _index;
+	Contact _allContact[8];
 
   public:
 	PhoneBook(void);
-	void addContact(void);
-	void display(void);
-	// fonctions diverses
+	void add_contact(void);
+	void display_contact(void);
 };
 
-bool isAllDigit(const std::string str);
-bool isAlphaDigit(const std::string str);
+std::string safeGetLine(const std::string message);
+int	isAlphaDigit(std::string str);
+int	isDigit(std::string str);

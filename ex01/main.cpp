@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 16:20:17 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/27 01:57:04 by lenakach         ###   ########.fr       */
+/*   Created: 2025/11/29 14:06:27 by lenakach          #+#    #+#             */
+/*   Updated: 2025/11/29 14:54:53 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@ int	main(void)
 {
 	PhoneBook	instance;
 	std::string	buff;
-	
-	std::cout << "Welcome to your PhoneBook" << std::endl;
+
+	std::cout<< "Welcome to your PhoneBook" << std::endl;
 	for ( ; ; )
 	{
-		std::cout << "Enter a command please" << std::endl;
-		std::cin >> buff;
-		if (buff == "EXIT")
-			return (1);
-		else if (buff == "ADD")
-			instance.addContact();
+		buff = safeGetLine("Enter a commande please");
+		if (buff == "ADD")
+			instance.add_contact();
 		else if (buff == "SEARCH")
-			instance.display();
+			instance.display_contact();
+		else if (buff == "EXIT")
+			return (1);		
 		else
-			std::cout << "Invalid command, try : ADD, SEARCH, EXIT" << std::endl;
+			std::cout << "Invalid command" << std::endl;
 	}
 	return (0);
 }
