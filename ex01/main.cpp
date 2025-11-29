@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:06:27 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 18:38:15 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/29 19:36:22 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(void)
 			instance.add_contact();
 		else if (buff == "SEARCH")
 		{
-			instance.display_contact();
+			if (!(instance.display_contact()))
+				continue ;
 			instance.select_contact();
 		}
 		else if (buff == "EXIT")

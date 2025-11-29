@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:12:09 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 18:39:27 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/29 19:48:49 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PhoneBook::PhoneBook(void) : _index(0)
 std::string	truncateLine(std::string str)
 {
 	if (str.length() > 10)
-		return (str.substr(0, 9) + "*");	
+		return (str.substr(0, 9) + ".");	
 	return (str);
 }
 
@@ -54,14 +54,14 @@ void	PhoneBook::select_contact(void)
 	std::cout << std::setw(10) << "Darkest Secret: " << truncateLine(this->_allContact[index_select].getDarkestSecret()) << std::endl;
 }
 
-void	PhoneBook::display_contact(void)
+int	PhoneBook::display_contact(void)
 {
 	int	index = 0;
 	
 	if (this->_index == 0)
 	{
 		std::cout << "Empty PhoneBook" << std::endl;
-		return ;
+		return (0);
 	}
 	std::cout << std::setw(10) << "Index" << std::setw(1) << "|"
 			  << std::setw(10) << "First Name" << std::setw(1) << "|"
@@ -80,7 +80,7 @@ void	PhoneBook::display_contact(void)
 		}
 		index++;
 	}
-	return ;
+	return (1);
 }
 
 void PhoneBook::add_contact(void)
@@ -93,7 +93,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter first name: ");
-		if (!isAlphaDigit(buffer))
+		if (!isAlphaDigit(buffer) || buffer.empty())
 			std::cout << "Invalid format for first name, try again" << std::endl;
 		else
 		{
@@ -104,7 +104,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter last name: ");
-		if (!isAlphaDigit(buffer))
+		if (!isAlphaDigit(buffer) || buffer.empty())
 			std::cout << "Invalid format for last name, try again" << std::endl;
 		else
 		{
@@ -115,7 +115,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter nick name: ");
-		if (!isAlphaDigit(buffer))
+		if (!isAlphaDigit(buffer) || buffer.empty())
 			std::cout << "Invalid format for nick name, try again" << std::endl;
 		else
 		{
@@ -126,7 +126,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter phone number: ");
-		if (!isDigit(buffer))
+		if (!isDigit(buffer) || buffer.empty())
 			std::cout << "Invalid format for phone number, try again" << std::endl;
 		else
 		{
@@ -137,7 +137,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter darkest secret: ");
-		if (!isAlphaDigit(buffer))
+		if (!isAlphaDigit(buffer) || buffer.empty())
 			std::cout << "Invalid format for darkest secret, try again" << std::endl;
 		else
 		{

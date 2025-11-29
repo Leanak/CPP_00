@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:06:32 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 17:42:00 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/29 19:36:38 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PhoneBook
   public:
 	PhoneBook(void);
 	void add_contact(void);
-	void display_contact(void);
+	int display_contact(void);
 	void select_contact(void);
 };
 

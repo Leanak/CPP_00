@@ -6,14 +6,14 @@
 #    By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/26 15:10:11 by lenakach          #+#    #+#              #
-#    Updated: 2025/11/27 01:53:26 by lenakach         ###   ########.fr        #
+#    Updated: 2025/11/29 19:30:03 by lenakach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror --std=c++98 -I.
 
 SRC = PhoneBook.class.cpp \
 		Contact.class.cpp \
