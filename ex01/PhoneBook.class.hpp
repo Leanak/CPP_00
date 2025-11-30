@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:06:32 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 19:36:38 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/30 21:27:46 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,4 @@ class PhoneBook
 std::string safeGetLine(const std::string message);
 int	isAlphaDigit(std::string str);
 int	isDigit(std::string str);
+int	isAlpha(std::string str);

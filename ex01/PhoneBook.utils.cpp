@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:19:48 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 18:42:02 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/30 21:27:25 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ std::string	safeGetLine(const std::string message)
 	if (!std::getline(std::cin, buffer))
 		exit (0);
 	return (buffer);
+}
+
+int	isAlpha(std::string str)
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (!isalpha(str[i]) && str[i] != 32 && str[i] != '-')
+			return (0);
+	}
+	return (1);
 }
 
 int	isAlphaDigit(std::string str)

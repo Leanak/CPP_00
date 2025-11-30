@@ -6,7 +6,7 @@
 /*   By: lenakach <lenakach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:12:09 by lenakach          #+#    #+#             */
-/*   Updated: 2025/11/29 19:48:49 by lenakach         ###   ########.fr       */
+/*   Updated: 2025/11/30 21:28:30 by lenakach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter first name: ");
-		if (!isAlphaDigit(buffer) || buffer.empty())
+		if (!isAlpha(buffer) || buffer.empty())
 			std::cout << "Invalid format for first name, try again" << std::endl;
 		else
 		{
@@ -104,7 +104,7 @@ void PhoneBook::add_contact(void)
 	while (1)
 	{
 		buffer = safeGetLine("Enter last name: ");
-		if (!isAlphaDigit(buffer) || buffer.empty())
+		if (!isAlpha(buffer) || buffer.empty())
 			std::cout << "Invalid format for last name, try again" << std::endl;
 		else
 		{
